@@ -9,37 +9,63 @@ app.use(cors());
 app.use(morgan("dev"));
 app.use(express.json());
 
-let notes = [];
+let santos = [
+  {
+    id: 1,
+    name: "Seiya",
+    constellation: "Pegaso",
+  },
+  {
+    id: 2,
+    name: "Shiryu",
+    constellation: "Dragon",
+  },
+  {
+    id: 3,
+    name: "Hyoga",
+    constellation: "Cisne",
+  },
+  {
+    id: 4,
+    name: "Shun",
+    constellation: "Andromeda",
+  },
+  {
+    id: 5,
+    name: "Ikki",
+    constellation: "Fenix",
+  },
+];
 
 app.get("/", (req, res) => {
   res.send("<h1>Hellow World</h1>");
 });
 
-app.get("/api/notes", (req, res) => {
+app.get("/api/santos", (req, res) => {
   // Note.find({}).then((notes) => {
   //   res.json(notes);
   // });
-  res.json(notes);
+  res.json(santos);
 });
 
-app.get("/api/notes/:id", async (req, res) => {
+app.get("/api/santos/:id", async (req, res) => {
   const { id } = req.params;
   try {
-    const note = await notes.find((note) => note.id === parseInt(id));
-    console.log(note);
-    res.json(note);
+    const santo = await santos.find((santo) => santo.id === parseInt(id));
+    console.log(santo);
+    res.json(santo);
   } catch (error) {
     console.log(error);
   }
 });
 
-app.delete("/api/notes/:id", (req, res) => {
+app.delete("/api/santos/:id", (req, res) => {
   const id = Number(req.params.id);
-  notes = notes.filter((note) => note.id != id);
+  santos = santos.filter((santo) => santo.id != id);
   res.status(204).end();
 });
 
-app.post("/api/notes", (req, res) => {
+app.post("/api/santos", (req, res) => {
   const { content, important } = req.body;
 
   if (!content) {
@@ -48,19 +74,18 @@ app.post("/api/notes", (req, res) => {
     });
   }
 
-  const ids = notes.length >= 1 ? notes.map((note) => note.id) : 0;
+  const ids = santos.length >= 1 ? santos.map((santo) => santo.id) : 0;
   const maxId = ids == 0 ? 0 : Math.max(...ids);
   console.log(ids);
-  const newNote = {
+  const newSanto = {
     id: maxId + 1,
     content,
     important: typeof important != undefined ? important : false,
-    date: new Date().toISOString(),
   };
 
-  notes = [...notes, newNote];
-  console.log(newNote);
-  res.json(notes);
+  santos = [...santos, newSanto];
+  console.log(newSanto);
+  res.json(newSanto);
 });
 
 const port = process.env.PORT || 3001;
