@@ -2,8 +2,8 @@ POST http://localhost:3001/api/notes
 Content-Type: application/json
 
 {
-  "content": "Contenido de mi tercera nota",
-  "important": true
+  "name": "Contenido de mi tercera nota",
+  "constellation": true
 }
 
 ###

@@ -80,7 +80,7 @@ app.post("/api/santos", (req, res) => {
   const newSanto = {
     id: maxId + 1,
     name,
-    constellaction,
+    constellation,
   };
 
   santos = [...santos, newSanto];
