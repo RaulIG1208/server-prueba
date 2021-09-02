@@ -66,9 +66,9 @@ app.delete("/api/santos/:id", (req, res) => {
 });
 
 app.post("/api/santos", (req, res) => {
-  const { content, important } = req.body;
+  const { name, constellation } = req.body;
 
-  if (!content) {
+  if (!name) {
     return res.status(400).json({
       error: "content is missing",
     });
@@ -79,8 +79,8 @@ app.post("/api/santos", (req, res) => {
   console.log(ids);
   const newSanto = {
     id: maxId + 1,
-    content,
-    important: typeof important != undefined ? important : false,
+    name,
+    constellaction,
   };
 
   santos = [...santos, newSanto];
