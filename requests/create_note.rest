@@ -1,9 +1,11 @@
-POST http://localhost:3001/api/notes 
+POST http://localhost:3001/api/santos 
 Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYxMzM3ZjU4YzlmM2ZlMDE3MzhkMjljMiIsInVzZXJuYW1lIjoiQ29uYW4iLCJpYXQiOjE2MzA3NjQ5OTl9.C27H9OMYoeeck_iir2ONrFuTBd-JqwZoU1sC5l1w
 
 {
-  "name": "Contenido de mi tercera nota",
-  "constellation": true
+  "name": "Raul",
+  "constellation": "Leo",
+  "userId": "61329dac00cd9f18aa3a254a"
 }
 
 ###

@@ -1,0 +1,7 @@
+PUT  http://localhost:3001/api/santos/61314e7038c6857a3a760e7c 
+Content-Type: application/json
+
+{
+  "name": "Raul",
+  "constellation": "Leo"
+}
