@@ -12,6 +12,7 @@ const jwt = require('jsonwebtoken');
 const userRouter = require('./controllers/users');
 const User = require('./models/User');
 const loginRouter = require('./controllers/login');
+
 app.use(cors());
 app.use(morgan('dev'));
 app.use(express.json());
@@ -72,7 +73,7 @@ app.post('/api/santos', async (req, res, next) => {
     });
   }
   try {
-    const authorization = req.get('authorization');
+    const authorization = req.get('Authorization');
     let token = null;
     if (authorization && authorization.toLowerCase().startsWith('bearer')) {
       token = authorization.substring(7);
@@ -106,6 +107,10 @@ app.post('/api/santos', async (req, res, next) => {
 app.use('/api/users', userRouter);
 app.use('/api/login', loginRouter);
 
+if (process.env.NODE_ENV === 'test') {
+  const testingRouter = require('./controllers/testing');
+  app.use('/api/testing', testingRouter);
+}
 app.use(notFound);
 
 app.use(handleErrors);
